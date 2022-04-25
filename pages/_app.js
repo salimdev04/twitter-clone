@@ -7,6 +7,8 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   return (
+    // `session` comes from `getServerSideProps` or `getInitialProps`.
+    // Avoids flickering/session loading on first load.
     <SessionProvider session={session}>
       <RecoilRoot>
         <Component {...pageProps} />

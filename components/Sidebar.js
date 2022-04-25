@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import Image from "next/image";
 import React from "react";
-import { getProviders, getSession, useSession } from "next-auth/react";
+import { getProviders, getSession, signOut, useSession } from "next-auth/react";
 import SidebadLink from "./SidebadLink";
 import { HomeIcon } from "@heroicons/react/solid";
 import {
@@ -35,7 +35,10 @@ function Sidebar() {
       <button className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8cd8]">
         Tweet
       </button>
-      <div className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto">
+      <div
+        className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto"
+        onClick={signOut}
+      >
         <img
           src={session.user.image}
           alt="user name"
