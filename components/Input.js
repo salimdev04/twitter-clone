@@ -13,8 +13,8 @@ import {
   serverTimestamp,
   updateDoc,
 } from "@firebase/firestore";
-import { Picker } from "emoji-mart";
-import "emoji-mart/css/emoji-mart.css";
+// import { Picker } from "emoji-mart";
+// import data from '@emoji-mart/data'
 import React, { useRef, useState } from "react";
 import { db, storage } from "../firebase";
 import { ref, getDownloadURL, uploadString } from "@firebase/storage";
@@ -80,7 +80,7 @@ function Input() {
 
   return (
     <div
-      className={`border-b border-gray-700 p-3 flex space-x-3 overflow-y-scroll scrollbar-hide ${
+      className={`card p-3 flex space-x-3 overflow-y-scroll scrollbar-hide ${
         loading && "opacity-60"
       } `}
     >
@@ -93,7 +93,7 @@ function Input() {
         <div className={`${selectedFile && "pb-7"} ${input && "space-y-2.5"}`}>
           <textarea
             placeholder="what's happening"
-            className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[50px]"
+            className="bg-transparent outline-none text-lg placeholder-gray-500 tracking-wide w-full min-h-[50px]"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             rows="2"
@@ -142,7 +142,7 @@ function Input() {
                 <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
               </div>
 
-              {showEmojis && (
+              {/* {showEmojis && (
                 <Picker
                   onSelect={addEmoji}
                   style={{
@@ -154,7 +154,7 @@ function Input() {
                   }}
                   theme="dark"
                 />
-              )}
+              )} */}
             </div>
             <button
               className="bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 disabled:cursor-default"

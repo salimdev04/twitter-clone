@@ -4,12 +4,15 @@ import {
   DotsHorizontalIcon,
   HeartIcon,
   ShareIcon,
+  SwitchHorizontalIcon,
 } from "@heroicons/react/outline";
+import { useSession } from "next-auth/react";
 import Moment from "react-moment";
 
 function Comment({ comment }) {
+  const {data: session} = useSession()
   return (
-    <div className="p-3 flex cursor-pointer border-b border-gray-700">
+    <div className="p-3 flex cursor-pointer border-b border-gray-200">
       <img
         src={comment?.userImg}
         alt=""
@@ -19,7 +22,7 @@ function Comment({ comment }) {
         <div className="flex justify-between">
           <div className="text-[#6e767d]">
             <div className="inline-block group">
-              <h4 className="font-bold text-[#d9d9d9] text-[15px] sm:text-base inline-block group-hover:underline">
+              <h4 className="font-bold text-black text-[15px] sm:text-base inline-block group-hover:underline">
                 {comment?.username}
               </h4>
               <span className="ml-1.5 text-sm sm:text-[15px]">
@@ -30,7 +33,7 @@ function Comment({ comment }) {
             <span className="hover:underline text-sm sm:text-[15px]">
               <Moment fromNow>{comment?.timestamp?.toDate()}</Moment>
             </span>
-            <p className="text-[#d9d9d9] mt-0.5 max-w-lg overflow-scroll text-[15px] sm:text-base">
+            <p className="text-black mt-0.5 max-w-lg overflow-scroll text-[15px] sm:text-base">
               {comment?.comment}
             </p>
           </div>
@@ -39,25 +42,7 @@ function Comment({ comment }) {
           </div>
         </div>
 
-        <div className="text-[#6e767d] flex justify-between w-10/12">
-          <div className="icon group">
-            <ChatIcon className="h-5 group-hover:text-[#1d9bf0]" />
-          </div>
-
-          <div className="flex items-center space-x-1 group">
-            <div className="icon group-hover:bg-pink-600/10">
-              <HeartIcon className="h-5 group-hover:text-pink-600" />
-            </div>
-            <span className="group-hover:text-pink-600 text-sm"></span>
-          </div>
-
-          <div className="icon group">
-            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
-          </div>
-          <div className="icon group">
-            <ChartBarIcon className="h-5 group-hover:text-[#1d9bf0]" />
-          </div>
-        </div>
+       
       </div>
     </div>
   );

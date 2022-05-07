@@ -78,7 +78,7 @@ function Post({ id, post, postPage }) {
 
   return (
     <div
-      className="p-3 flex cursor-pointer border-b border-gray-700"
+      className={`p-3 flex cursor-pointer border-b border-gray-200 ${!postPage && "card"}`}
       onClick={() => router.push(`/${id}`)}
     >
       {!postPage && (
@@ -100,7 +100,7 @@ function Post({ id, post, postPage }) {
           <div className="text-[#6e767d]">
             <div className="inline-block group">
               <h4
-                className={`font-bold text-[15px] sm:text-base text-[#d9d9d9] group-hover:underline ${
+                className={`font-bold text-[15px] sm:text-base text-black group-hover:underline ${
                   !postPage && "inline-block"
                 }`}
               >
@@ -117,7 +117,7 @@ function Post({ id, post, postPage }) {
               <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
             </span>
             {!postPage && (
-              <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
+              <p className="text-black text-[15px] sm:text-base mt-0.5">
                 {post?.text}
               </p>
             )}
@@ -127,20 +127,21 @@ function Post({ id, post, postPage }) {
           </div>
         </div>
         {postPage && (
-          <p className="text-[#d9d9d9] mt-0.5 text-xl">{post?.text}</p>
+          <p className="text-black mt-0.5 text-xl">{post?.text}</p>
         )}
         <img
           src={post?.image}
           alt=""
-          className="rounded-2xl max-h-[700px] object-cover mr-2"
+          className="rounded-2xl max-h-[350px] object-cover mr-2"
         />
+        <div className="flex my-5">
         <div
-          className={`text-[#6e767d] flex justify-between w-10/12 ${
+          className={`text-[#6e767d] flex  w-10/12 ${
             postPage && "mx-auto"
           }`}
         >
           <div
-            className="flex items-center space-x-1 group"
+            className="iconContainer"
             onClick={(e) => {
               e.stopPropagation();
               setPostId(id);
@@ -159,7 +160,7 @@ function Post({ id, post, postPage }) {
 
           {session.user.uid === post?.id ? (
             <div
-              className="flex items-center space-x-1 group"
+              className="iconContainer"
               onClick={(e) => {
                 e.stopPropagation();
                 deleteDoc(doc(db, "posts", id));
@@ -171,7 +172,7 @@ function Post({ id, post, postPage }) {
               </div>
             </div>
           ) : (
-            <div className="flex items-center space-x-1 group">
+            <div className="iconContainer">
               <div className="icon group-hover:bg-green-500/10">
                 <SwitchHorizontalIcon className="h-5 group-hover:text-green-500" />
               </div>
@@ -179,7 +180,7 @@ function Post({ id, post, postPage }) {
           )}
 
           <div
-            className="flex items-center space-x-1 group"
+            className="iconContainer"
             onClick={(e) => {
               e.stopPropagation();
               likePost();
@@ -203,13 +204,14 @@ function Post({ id, post, postPage }) {
             )}
           </div>
 
-          <div className="icon group">
-            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
-          </div>
-          <div className="icon group">
-            <ChartBarIcon className="h-5 group-hover:text-[#1d9bf0]" />
-          </div>
         </div>
+        
+        <button className="ml-auto bgColor text-black shadow-sm rounded-full font-bold text-sm py-1.5 px-3.5">
+              Follow
+            </button>
+
+        </div>
+        
       </div>
     </div>
   );

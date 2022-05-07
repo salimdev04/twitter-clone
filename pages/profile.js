@@ -1,21 +1,24 @@
-import { getProviders, getSession } from "next-auth/react";
-import Feed from "../components/Feed";
-import Layout from "../components/Layout";
-import Widgets from "../components/Widgets";
+import { getProviders, getSession } from 'next-auth/react';
+import React from 'react'
+import Layout from "../components/Layout"
+import Widgets from '../components/Widgets';
 
-export default function Home({ trendingResults, followResults, providers }) {
-
-
+function Profile({ trendingResults, followResults, providers }) {
   return (
     <Layout providers={providers}>
-        <Feed />
-        <Widgets
+      <div  className="flex-grow max-w-2xl sm:ml-[73px] xl:ml-[370px]">
+        <h1>Hello Profile</h1>
+      </div>
+      <Widgets
           trendingResults={trendingResults}
           followResults={followResults}
         />
     </Layout>
-  );
+  )
 }
+
+export default Profile
+
 
 export async function getServerSideProps(context) {
   const trendingResults = await fetch("https://jsonkeeper.com/b/NKEV").then(

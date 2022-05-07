@@ -15,28 +15,33 @@ import {
   DotsCircleHorizontalIcon,
   DotsHorizontalIcon,
 } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
 
 function Sidebar() {
   const { data: session } = useSession();
+  const router = useRouter();
   return (
-    <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
+    <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full ">
       <div className="flex items-center justify-center w-14 h-14 hoverAnimation p-0 xl:ml-24">
         <Image src="https://rb.gy/ogau5a" width={30} height={30} />
       </div>
-      <div className="space-y-2.5 mt-4 mb-2.5 xl:ml-24">
+      <div className="space-y-2.5 mt-4 mb-2.5 xl:ml-24 card xl:w-56 ">
         <SidebadLink text="Home" Icon={HomeIcon} active />
         <SidebadLink text="Explore" Icon={HashtagIcon} active />
         <SidebadLink text="Notification" Icon={BellIcon} />
         <SidebadLink text="Bookmarks" Icon={BookmarkIcon} />
         <SidebadLink text="Lists" Icon={HomeIcon} />
+        <div onClick={() => router.push("/profile")} >
+
         <SidebadLink text="Profile" Icon={UserIcon} />
+        </div>
         <SidebadLink text="More" Icon={DotsCircleHorizontalIcon} />
       </div>
-      <button className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8cd8]">
+      <button className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-2xl w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8cd8]">
         Tweet
       </button>
       <div
-        className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto"
+        className="card flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto"
         onClick={signOut}
       >
         <img
